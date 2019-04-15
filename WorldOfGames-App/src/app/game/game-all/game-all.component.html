@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row space-top">
+      <div class="col-md-12">
+        <h1>Welcome to Game World</h1>
+        <p>Select game from the catalog to view details.</p>
+      </div>
+    </div>
+    <div class="row space-top">
+      <div class="col-md-4" *ngFor="let g of game$ | async">
+        <div class="card text-white bg-primary">
+          <div class="card-body">
+            <blockquote class="card-blockquote">
+              <img src="{{g.image}}" />
+              <p>{{g.title}}</p>
+              <div class="pull-right">
+                <a [routerLink]="['/game/details', g._id]" class="btn btn-info">Details</a>
+                <a *ngIf="authService.isAdmin()" (click)="deleteGame(g._id)" class="btn btn-danger">Delete</a>
+              </div>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
