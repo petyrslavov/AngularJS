@@ -7,6 +7,8 @@ const createRoute = 'http://localhost:5000/game/create';
 const getAllRoute = 'http://localhost:5000/game/all';
 const gameDetailsRoute = 'http://localhost:5000/game/details/';
 const deleteGame = 'http://localhost:5000/game/delete/';
+const favGame = 'http://localhost:5000/game/mygames';
+const userGamesRoute = 'http://localhost:5000/game/user';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,14 @@ const deleteGame = 'http://localhost:5000/game/delete/';
 export class GameService {
 
   constructor(private http: HttpClient) { }
+
+  getUserGames(): Observable<Array<IGame>>{
+    return this.http.get<Array<IGame>>(userGamesRoute);
+  }
+
+  createFavGame(data){
+    return this.http.post(favGame, data);
+  }
 
   createGame(data) {
     return this.http.post(createRoute, data);

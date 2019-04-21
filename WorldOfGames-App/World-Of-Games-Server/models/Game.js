@@ -25,10 +25,10 @@ const gameSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.String,
     required: true
   },
-  creator: {
+  users: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
-  }
+  }]
 });
 
 const Game = mongoose.model('Game', gameSchema);

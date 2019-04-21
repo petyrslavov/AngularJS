@@ -32,6 +32,4 @@ export class GameCreateComponent implements OnInit {
   get f() { return this.form.controls };
 
   get invalid() { return this.form.invalid };
-
-
 }

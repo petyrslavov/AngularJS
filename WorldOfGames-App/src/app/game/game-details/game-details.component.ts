@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GameService } from '../game.service';
 import { IGame } from 'src/app/models/game';
 
@@ -10,7 +10,7 @@ import { IGame } from 'src/app/models/game';
 })
 export class GameDetailsComponent implements OnInit {
   game: IGame;
-  constructor(private route: ActivatedRoute, private gameService: GameService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private gameService: GameService) { }
 
   ngOnInit() {
     this.route.params.subscribe(data => {
@@ -18,6 +18,12 @@ export class GameDetailsComponent implements OnInit {
       this.gameService.gameDetails(id).subscribe((data) => {
         this.game = data;
       })
+    })
+  }
+
+  favouriteGame(){
+    this.gameService.createFavGame(this.game).subscribe((data) => {
+      this.router.navigate(['/game/user']);
     })
   }
 
