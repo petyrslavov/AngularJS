@@ -1,40 +1,16 @@
-<!-- <div class="container">
-    <div class="row space-top">
-      <div class="col-md-12">
-        <h1>Welcome to Game World</h1>
-        <p>Select game from the catalog to view details.</p>
-      </div>
-    </div>
-    <div class="row space-top">
-      <div class="col-md-4" *ngFor="let g of game$ | async">
-        <div class="card text-white bg-primary">
-          <div class="card-body">
-            <blockquote class="card-blockquote">
-              <img src="{{g.image}}" />
-              <p>{{g.title}}</p>
-              <div class="pull-right">
-                <a [routerLink]="['/game/details', g._id]" class="btn btn-info">Details</a>
-                <a *ngIf="authService.isAdmin()" (click)="deleteGame(g._id)" class="btn btn-danger">Delete</a>
-              </div>
-            </blockquote>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
   integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <div class="container">
   <div class="row space-top">
     <div class="col-md-12">
-      <h1>Welcome to Game World</h1>
+      <h1>{{category}} Games</h1>
       <p>Select game from the catalog to view details.</p>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-4" *ngFor="let g of game$ | async | paginate: { itemsPerPage:6, currentPage: p }">
+    <div class="col-md-4" *ngFor="let g of game$ | async | paginate: { itemsPerPage:3, currentPage: p }">
       <div class="card mb-4 text-white bg-dark">
         <img class="card-img-top" src="{{g.image}}" alt="Card image cap">
         <div class="card-body">

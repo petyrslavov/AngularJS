@@ -14,8 +14,8 @@ export class ResponseHandlerInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(tap((success) => {
       if(success instanceof HttpResponse){
-        if (success.url.includes('login') || success.url.includes('register') || success.url.endsWith('create') || success.url.includes('delete')) {
-          this.toastr.success('Success', 'Success');
+        if (success.url.includes('login') || success.url.includes('register') || success.url.endsWith('create') || success.url.includes('delete') || (success.url.includes('mygames'))) {
+          this.toastr.success('Success', success.body.message);
         }
       }
     }), catchError((err) => {

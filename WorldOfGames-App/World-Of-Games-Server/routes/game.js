@@ -2,6 +2,7 @@ const express = require('express')
 const authCheck = require('../middleware/auth-check');
 const Game = require('../models/Game');
 const User = require('../models/User');
+const mongoose = require('mongoose');
 
 const router = new express.Router()
 
@@ -53,17 +54,23 @@ function validateGameForm(payload) {
   }
 }
 
-router.post('/mygames', authCheck, async (req, res) => {
+router.post('/mygames', authCheck, (req, res) => {
   const userId = req.user._id;
   const game = req.body;
 
   Game.findById(game.id)
     .then((game) => {
+      if (game.users.includes(userId)) {
+        return res.status(400).json({
+          success: false,
+          message: 'Game already in your favourites!'
+        })
+      }
       game.users.push(userId);
       game.save();
       res.status(200).json({
         success: true,
-        message: 'Game already in your favourites!',
+        message: 'Game added in your favourites!',
         game
       })
     })
@@ -80,7 +87,6 @@ router.post('/mygames', authCheck, async (req, res) => {
       user.save();
       res.status(200).json({
         success: true,
-        message: 'Game added successfully to favourites.',
         user
       })
     });
@@ -107,7 +113,16 @@ router.post('/create', authCheck, (req, res) => {
     })
 })
 
-router.get('/all', authCheck, (req, res) => {
+router.get('/category/:category', (req, res) => {
+  const category = req.params.category;
+
+  Game.find({ genre: category })
+    .then((game) => {
+      return res.status(200).json(game)
+    })
+})
+
+router.get('/all', (req, res) => {
   const page = parseInt(req.query.page) || 1
   const search = req.query.search
 
@@ -117,7 +132,7 @@ router.get('/all', authCheck, (req, res) => {
     })
 })
 
-router.get('/details/:id', authCheck, (req, res) => {
+router.get('/details/:id', (req, res) => {
   const id = req.params.id
   Game.findById(id)
     .then((game) => {
@@ -165,7 +180,7 @@ router.delete('/delete/:id', authCheck, (req, res) => {
         })
       }
 
-      if ((game.creator.toString() != user && !req.user.roles.includes("Admin"))) {
+      if (!req.user.roles.includes("Admin")) {
         return res.status(401).json({
           success: false,
           message: 'Unauthorized!'

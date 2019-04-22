@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row space-top">
     <div class="col-md-12">
       <h1>Hello</h1>
@@ -16,6 +16,30 @@
               <a [routerLink]="['/game/details', g._id]" class="btn btn-info">Details</a>
             </div>
           </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+  integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<div class="container">
+  <div class="row space-top">
+    <div class="col-md-12">
+      <h1>Hello {{authService.getUsername()}}!</h1>
+      <h3>My Games</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let g of game$ | async">
+      <div class="card mb-4 text-white bg-dark">
+        <img class="card-img-top" src="{{g.image}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{g.title}}</h5>
+          <p class="card-text">{{g.genre}}</p>
+          <a [routerLink]="['/game/details', g._id]" class="btn btn-outline-light btn-sm">Details</a>
         </div>
       </div>
     </div>

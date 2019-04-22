@@ -9,17 +9,21 @@ import { GameService } from './game.service';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from '../authentication/guards/auth.guard';
 import { AdminGuard } from '../authentication/guards/admin.guard';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { GameCategoryComponent } from './game-category/game-category.component';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
     RouterModule.forChild([
       { path: '', pathMatch: 'full', redirectTo: 'home' },
       { path: 'create', component: GameCreateComponent, canActivate: [AdminGuard]},
-      { path: 'all', component: GameAllComponent, canActivate: [AuthGuard]},
-      { path: 'details/:id', component: GameDetailsComponent, canActivate: [AuthGuard] },
+      { path: 'all', component: GameAllComponent},
+      { path: 'details/:id', component: GameDetailsComponent},
       { path: 'user', component: GameUserComponent, canActivate: [AuthGuard] },
+      { path: 'category/:category', component: GameCategoryComponent },
     ])
   ],
   declarations: [
@@ -27,6 +31,7 @@ import { AdminGuard } from '../authentication/guards/admin.guard';
     GameCreateComponent,
     GameDetailsComponent,
     GameUserComponent,
+    GameCategoryComponent,
   ],
   providers: [
     GameService
