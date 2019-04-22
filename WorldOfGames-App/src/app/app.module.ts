@@ -4,26 +4,22 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { NavigationComponent } from './navigation/navigation.component';
-import { SigninComponent } from './authentication/signin/signin.component';
-import { SignupComponent } from './authentication/signup/signup.component';
-import { HomeComponent } from './home/home.component';
-import { DropdownDirective } from './navigation/dropdown.directive';
-import { CollapseDirective } from './navigation/collapse.directive';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AuthService } from './authentication/auth.service';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { JwtInterceptorService } from './jwt-interceptor.service';
-import { ResponseHandlerInterceptorService } from './response-handler-interceptor.service';
+import { JwtInterceptorService } from './core/interceptors/jwt-interceptor.service';
+import { ResponseHandlerInterceptorService } from './core/interceptors/response-handler-interceptor.service';
+import { NavigationComponent } from './components/shared/navigation/navigation.component';
+import { HomeComponent } from './components/home/home.component';
+import { DropdownDirective } from './components/shared/navigation/dropdown.directive';
+import { CollapseDirective } from './components/shared/navigation/collapse.directive';
+import { AuthenticationModule } from './components/authentication/authentication.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    SigninComponent,
-    SignupComponent,
     HomeComponent,
     DropdownDirective,
     CollapseDirective,
@@ -35,9 +31,9 @@ import { ResponseHandlerInterceptorService } from './response-handler-intercepto
     AppRoutingModule,
     HttpClientModule,
     ToastrModule.forRoot(),
+    AuthenticationModule
   ],
   providers: [ 
-    AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ResponseHandlerInterceptorService, multi: true }
   ],

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IGame } from '../models/game';
+import { IGame } from 'src/app/components/shared/models/game';
 
 const createRoute = 'http://localhost:5000/game/create';
 const getAllRoute = 'http://localhost:5000/game/all';

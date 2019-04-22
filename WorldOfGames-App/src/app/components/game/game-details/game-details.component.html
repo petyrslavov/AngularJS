@@ -9,16 +9,16 @@
       <div class="card text-white bg-primary">
         <div class="card-body">
           <blockquote class="card-blockquote">
-            <img src="{{game.image}}" />
+            <img src="{{game?.image}}" />
           </blockquote>
         </div>
       </div>
     </div>
     <div class="col-md-4">
-      <h3>Title: {{game.title}}</h3>
-      <p>Genre: {{game.genre}}</p>
-      <p>Year: {{game.year}}</p>
-      <p>Description: {{game.description}}</p>
+      <h3>Title: {{game?.title}}</h3>
+      <p>Genre: {{game?.genre}}</p>
+      <p>Year: {{game?.year}}</p>
+      <p>Description: {{game?.description}}</p>
       <a *ngIf="authService.isAuthenticated()" class="btn btn-dark" (click)="favouriteGame()">Add to favourites</a>
     </div>
     <div class="col-md-4">

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GameService } from '../game.service';
-import { IGame } from 'src/app/models/game';
+import { GameService } from '../../../core/services/game.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { AuthService } from 'src/app/authentication/auth.service';
+import { IGame } from '../../shared/models/game';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-game-details',

@@ -5,12 +5,12 @@ import { GameCreateComponent } from './game-create/game-create.component';
 import { GameDetailsComponent } from './game-details/game-details.component';
 import { GameUserComponent } from './game-user/game-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { GameService } from './game.service';
+import { GameService } from '../../core/services/game.service';
 import { RouterModule } from '@angular/router';
-import { AuthGuard } from '../authentication/guards/auth.guard';
-import { AdminGuard } from '../authentication/guards/admin.guard';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { GameCategoryComponent } from './game-category/game-category.component';
+import { AdminGuard } from 'src/app/core/guards/admin.guard';
+import { AuthGuard } from 'src/app/core/guards/auth.guard';
 
 @NgModule({
   imports: [

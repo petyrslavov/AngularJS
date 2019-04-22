@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GameService } from '../game.service';
+import { GameService } from '../../../core/services/game.service';
 import { Observable } from 'rxjs';
-import { IGame } from 'src/app/models/game';
-import { AuthService } from 'src/app/authentication/auth.service';
+import { IGame } from '../../shared/models/game';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-game-category',
@@ -24,7 +24,6 @@ export class GameCategoryComponent implements OnInit {
       this.category = params.get("category")
       this.game$ = this.gameService.gameGategory(this.category);
     })
-    console.log(this.category);
   }
 
 }

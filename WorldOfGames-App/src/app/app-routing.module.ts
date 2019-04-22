@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SigninComponent } from './components/authentication/signin/signin.component';
+import { SignupComponent } from './components/authentication/signup/signup.component';
+import { HomeComponent } from './components/home/home.component';
 
 // Components
-import { HomeComponent } from './home/home.component';
-import { SigninComponent } from './authentication/signin/signin.component';
-import { SignupComponent } from './authentication/signup/signup.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'home', component: HomeComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'game', loadChildren: './game/game.module#GameModule'}
+  { path: 'home', component: HomeComponent },
+  { path: 'game', loadChildren: './components/game/game.module#GameModule'}
 ]
 
 @NgModule({
