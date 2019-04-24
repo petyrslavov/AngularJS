@@ -9,7 +9,7 @@ The application is split into three parts
 * Public part
 	* Users can login
 	* Users can register
-	* All users can access games, games details, and pick categories.
+	* All users can access games, games details, and search game by category.
 * Private part 
 	* Users have profiles and add games to favorites
 * Admin part
