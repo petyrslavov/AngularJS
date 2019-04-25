@@ -25,5 +25,10 @@ export class GameCategoryComponent implements OnInit {
       this.game$ = this.gameService.gameGategory(this.category);
     })
   }
-
+  
+  deleteGame(id){
+    this.gameService.deleteGame(id).subscribe((data) => {
+      this.game$ = this.gameService.getAllGames();
+    });
+  }
 }

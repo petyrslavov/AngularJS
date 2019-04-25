@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-4" *ngFor="let g of game$ | async | paginate: { itemsPerPage:3, currentPage: p }">
+    <div class="col-md-4" *ngFor="let g of game$ | async | paginate: { itemsPerPage:6, currentPage: p }">
       <div class="card mb-4 text-white bg-dark">
         <img class="card-img-top" src="{{g.image}}" alt="Card image cap">
         <div class="card-body">

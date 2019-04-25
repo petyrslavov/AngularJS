@@ -197,42 +197,6 @@ router.delete('/delete/:id', authCheck, (req, res) => {
     })
 })
 
-router.put('/edit/:id', authCheck, (req, res) => {
-  const id = req.params.id;
-  const game = req.body;
-
-  if (!game) {
-    return res.status(404).json({
-      success: false,
-      message: 'Game does not exists!'
-    })
-  }
-
-  if (!req.user.roles.includes('Admin')) {
-    return res.status(401).json({
-      success: false,
-      message: 'Unauthorized!'
-    })
-  }
-
-  const validationResult = validateGameForm(game)
-  if (!validationResult.success) {
-    return res.status(400).json({
-      success: false,
-      message: validationResult.message,
-      errors: validationResult.errors
-    })
-  }
-
-  Game.findByIdAndUpdate(id, game)
-    .then(() => {
-      return res.status(200).json({
-        success: true,
-        message: 'Game edited successfully!'
-      })
-    })
-})
-
 router.get('/:id', authCheck, (req, res) => {
   const id = req.params.id
 
